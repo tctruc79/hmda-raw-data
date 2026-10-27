@@ -43,8 +43,16 @@ remains the official source.
 
 ## Downloading
 
-One file: click it under **Assets** in release v1. Every file, with the
-GitHub command line tool:
+**Everything at once.** Two zips in release v1 hold all 408 CSV files:
+`hmda_raw_2018_2021.zip` (1.22 GB, 204 files) and
+`hmda_raw_2022_2025.zip` (0.99 GB, 204 files). One zip of all eight years
+would be 2.21 GB, above GitHub's limit of 2 GB per file.
+
+**One file.** Click it under **Assets** in release v1, or choose its year
+and state in the Submitted materials tab of the project app
+(https://hmda-triage.streamlit.app).
+
+**With the GitHub command line tool:**
 
     gh release download v1 -R tctruc79/hmda-raw-data
 
@@ -52,11 +60,12 @@ GitHub command line tool:
 
 In the folder that holds the downloaded zips,
 
-    shasum -a 256 -c SHA256SUMS.txt
+    shasum -a 256 -c --ignore-missing SHA256SUMS.txt
 
-prints `OK` for each zip that is exactly the one published here. After
-unzipping, `shasum -a 256 -c SHA256SUMS_csv.txt` does the same for the
-CSV files, which are byte for byte the files the HMDA Data Browser
+prints `OK` for each zip that is exactly the one published here
+(`--ignore-missing` skips the files not downloaded). After unzipping,
+`shasum -a 256 -c --ignore-missing SHA256SUMS_csv.txt` does the same for
+the CSV files, which are byte for byte the files the HMDA Data Browser
 returned.
 
 ## Cleaned data
